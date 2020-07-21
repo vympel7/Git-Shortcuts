@@ -3,11 +3,11 @@ It is as easy as running a file (*because that's actually what you have to do*)
 Open Main.py in a terminal and you're set!
 
 ### Commands
-[x] list_commands
-[x] list_repos
-[x] create_repo
-[ ] edit_repo
-[ ] full_push
+- [x] list_commands
+- [x] list_repos
+- [x] create_repo
+- [ ] edit_repo
+- [ ] full_push
 
 ### Use examples
 Text in **bold** is printed by the computer

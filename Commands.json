@@ -1,7 +1,0 @@
-{
-    "commands": [
-        "list_commands",
-        "list_repos",
-        "create_repo"
-    ]
-}

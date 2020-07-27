@@ -1,11 +1,11 @@
 ## Use instructions
-It is as easy as running a file (*because that's actually what you have to do*)  
+It is as easy as running a file (*because that's actually all you have to do*)  
 Open Main.py in a terminal and you're set!
 
 ### Commands
-- [x] list_commands
-- [x] list_repos
-- [x] create_repo
+- [x] commands
+- [x] repos
+- [x] create (name)
 - [ ] edit_repo
 - [ ] full_push
 
@@ -13,26 +13,49 @@ Open Main.py in a terminal and you're set!
 Text in **bold** is printed by the computer
 Text in *italic* is user input
 
-##### Example 1
+#### Example 1
 **Enter a command:**  
-*list_repos*  
+*commands*  
+**----- COMMANDS -----**  
+**(0): commands**  
+**(1): repos**  
+**(2): create**
+
+#### Example 2
+**Enter a command:**  
+*repos*  
 **----- REPOSITORIES -----**  
 **(0): snakeGame**  
 **(1): projectAlpha**  
-**(2): minecraftPlugin**  
+**(2): minecraftPlugin**
 
-##### Example 2
+#### Example 3
 **Enter a command:**
-*create_repo*
+*create projectBeta*
 
 **Press enter to leave the parameter blank**  
-**Enter the new repository name:** *projectBeta*  
 **Enter the new repository description:** *sequel to projectAlpha, advanced features and better performance*  
-**Enter the new repository homepage:** *https://www.projectBeta.net*  
+**Enter the new repository homepage:**    
 **Set repository to private (y/n)?**  
 *y*  
 **Automatically initialize the repository (y/n)?**  
-*y*
+*y*  
+
+**Save settings as default for the next repositories [Repository name won't be saved] (y/n)?**  
+*n*
+
+#### Example 4
+**Enter a command:**
+*create*
+
+**Press enter to leave the parameter blank**  
+**Enter the new repository name:** *projectAlphaAPI*  
+**Enter the new repository description:** *sequel to projectAlpha, advanced features and better performance*  
+**Enter the new repository homepage:**    
+**Set repository to private (y/n)?**  
+*y*  
+**Automatically initialize the repository (y/n)?**  
+*y*  
 
 **Save settings as default for the next repositories [Repository name won't be saved] (y/n)?**  
 *n*
@@ -43,7 +66,7 @@ Save repository creation data to automatically create similar repositories.
 
 
 ### Extra
-The commands you see listed are not all the ones I'm going to add, there will be more added as time progresses.  
+The commands you see listed are not all the ones I'm going to add, there will be more added in the future.  
 I'm open to suggestions and critiques.  
 Open issues if you have any and pull requests if you want to enlarge this project.
 

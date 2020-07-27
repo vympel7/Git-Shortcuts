@@ -86,7 +86,6 @@ def save_data(save_list):
            }
     
     if save_def == "y":
-        print(len(save_list), len(list(data.keys())))
         for i in range(len(data.values())):
             data[list(data.keys())[i]] = save_list[i]
         try:

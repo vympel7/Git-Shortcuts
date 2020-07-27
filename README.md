@@ -50,7 +50,7 @@ Text in *italic* is user input
 
 **Press enter to leave the parameter blank**  
 **Enter the new repository name:** *projectAlphaAPI*  
-**Enter the new repository description:** *sequel to projectAlpha, advanced features and better performance*  
+**Enter the new repository description:** *projectAlpha API*  
 **Enter the new repository homepage:**    
 **Set repository to private (y/n)?**  
 *y*  

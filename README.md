@@ -41,7 +41,7 @@ Text in *italic* is user input
 **Automatically initialize the repository (y/n)?**  
 *y*  
 
-**Save settings as default for the next repositories [Repository name won't be saved] (y/n)?**  
+**Save settings as default for the next repositories [Repository name and description won't be saved] (y/n)?**  
 *n*
 
 #### Example 4
@@ -57,7 +57,7 @@ Text in *italic* is user input
 **Automatically initialize the repository (y/n)?**  
 *y*  
 
-**Save settings as default for the next repositories [Repository name won't be saved] (y/n)?**  
+**Save settings as default for the next repositories [Repository name and description won't be saved] (y/n)?**  
 *n*
 
 ### Useful features

@@ -12,10 +12,10 @@ def list_repos(user):
 def create_repo(user, name=None):
     if name != None:
         name = name[0]
-    if os.path.exists(os.path.dirname(__file__) + "\\RepoData\\CreateRepoDefaultSettings.json"):
+    if os.path.exists(os.path.dirname(__file__) + "\\Data\\RepoData\\CreateRepoDefaultSettings.json"):
         use_def = input("Use default settings (y/n)?\n").lower().strip()
         if use_def == "y":
-            with open("RepoData\\CreateRepoDefaultSettings.json") as f:
+            with open("Data\\RepoData\\CreateRepoDefaultSettings.json") as f:
                 home_page, priv, auoti = json.load(f).values()
             if name == None:
                 name = input("Enter the new repository name: ")
@@ -47,5 +47,8 @@ def save_data(data_list):
                     "autoi": data_list[2]
                 }
         
-        with open("RepoData\\CreateRepoDefaultSettings.json", "w") as f:
+        os.mkdir("Data");os.chdir("Data")
+        os.mkdir("RepoData")
+        os.chdir(os.path.dirname(__file__))
+        with open("Data\\RepoData\\CreateRepoDefaultSettings.json", "w") as f:
             json.dump(data, f)

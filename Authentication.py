@@ -3,7 +3,7 @@ import json, os
 
 
 def login():
-    if os.path.exists(os.path.dirname(__file__) + "\\Data\\LoginDefaultSettings.json"):
+    if os.path.exists(os.path.dirname(__file__) + "\\AuthenticationData\\LoginDefaultSettings.json"):
         def_set_choice = input("\nDo you want to use the default login settings (y/n)?\n").lower().strip()
         if def_set_choice == "y":
             login_choice, org_or_user, token, username, password, hostname = load_data().values()
@@ -88,20 +88,13 @@ def save_data(save_list):
     if save_def == "y":
         for i in range(len(data.values())):
             data[list(data.keys())[i]] = save_list[i]
-        try:
-            os.mkdir("Data")
-            with open("Data\\LoginDefaultSettings.json", "w") as f:
-                json.dump(data, f)
-            return
-        
-        except OSError:
-            with open("Data\\LoginDefaultSettings.json", "w") as f:
-                json.dump(data, f)
-            return
+        with open("AuthenticationData\\LoginDefaultSettings.json", "w") as f:
+            json.dump(data, f)
+
 
 
 def load_data():
-    if os.path.exists(os.path.dirname(__file__) + "\\Data\\LoginDefaultSettings.json"):
-        with open("Data\\LoginDefaultSettings.json") as f:
+    if os.path.exists(os.path.dirname(__file__) + "\\AuthenticationData\\LoginDefaultSettings.json"):
+        with open("AuthenticationData\\LoginDefaultSettings.json") as f:
             return json.load(f)
     return 0

@@ -47,8 +47,25 @@ def save_data(data_list):
                     "autoi": data_list[2]
                 }
         
-        os.mkdir("Data");os.chdir("Data")
-        os.mkdir("RepoData")
-        os.chdir(os.path.dirname(__file__))
-        with open("Data\\RepoData\\CreateRepoDefaultSettings.json", "w") as f:
-            json.dump(data, f)
+        try:
+            os.mkdir("Data");os.chdir("Data")
+            try:
+                os.mkdir("RepoData")
+                os.chdir(os.path.dirname(__file__))
+                with open("Data\\RepoData\\CreateRepoDefaultSettings.json", "w") as f:
+                    json.dump(data, f)
+            except:
+                os.chdir(os.path.dirname(__file__))
+                with open("Data\\RepoData\\CreateRepoDefaultSettings.json", "w") as f:
+                    json.dump(data, f)
+        except:
+            os.chdir("Data")
+            try:
+                os.mkdir("RepoData")
+                os.chdir(os.path.dirname(__file__))
+                with open("Data\\RepoData\\CreateRepoDefaultSettings.json", "w") as f:
+                    json.dump(data, f)
+            except:
+                os.chdir(os.path.dirname(__file__))
+                with open("Data\\RepoData\\CreateRepoDefaultSettings.json", "w") as f:
+                    json.dump(data, f)

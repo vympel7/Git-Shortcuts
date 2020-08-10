@@ -89,16 +89,33 @@ def save_data(save_list):
         for i in range(len(data.values())):
             data[list(data.keys())[i]] = save_list[i]
         
-        os.mkdir("Data");os.chdir("Data")
-        os.mkdir("AuthenticationData")
-        os.chdir(os.path.dirname(__file__))
-        with open("Data\\AuthenticationData\\LoginDefaultSettings.json", "w") as f:
-            json.dump(data, f)
+        try:
+            os.mkdir("Data");os.chdir("Data")
+            try:
+                os.mkdir("AuthenticationData")
+                os.chdir(os.path.dirname(__file__))
+                with open("Data\\AuthenticationData\\LoginDefaultSettings.json", "w") as f:
+                    json.dump(data, f)
+            except:
+                os.chdir(os.path.dirname(__file__))
+                with open("Data\\AuthenticationData\\LoginDefaultSettings.json", "w") as f:
+                    json.dump(data, f)
+        except:
+            os.chdir("Data")
+            try:
+                os.mkdir("AuthenticationData")
+                os.chdir(os.path.dirname(__file__))
+                with open("Data\\AuthenticationData\\LoginDefaultSettings.json", "w") as f:
+                    json.dump(data, f)
+            except:
+                os.chdir(os.path.dirname(__file__))
+                with open("Data\\AuthenticationData\\LoginDefaultSettings.json", "w") as f:
+                    json.dump(data, f)
 
 
 
 def load_data():
-    if os.path.exists(os.path.dirname(__file__) + "\\AuthenticationData\\LoginDefaultSettings.json"):
+    if os.path.exists(os.path.dirname(__file__) + "\\Data\\AuthenticationData\\LoginDefaultSettings.json"):
         with open("Data\\AuthenticationData\\LoginDefaultSettings.json") as f:
             return json.load(f)
     return 0

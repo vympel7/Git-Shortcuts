@@ -1,5 +1,3 @@
-import sys
-sys.path.append("C:\\Users\\PC_HOME\\Desktop\\Python\\github_venv\\Lib\\site-packages")
 from Commands.CommandsClass import CommandsClass as cc
 import json
 

@@ -19,7 +19,7 @@ Text in *italic* is user input
 **----- COMMANDS -----**  
 **(0): commands**  
 **(1): repos**  
-**(2): create**
+**(2): create**  
 **(3): fpush**
 
 #### Example 2

@@ -1,5 +1,5 @@
-import Authentication as aut
-import RepoManager as repom
+import Authentication.Authentication as aut
+import Manager.RepoManager as repom
 import json
 
 user = aut.login()

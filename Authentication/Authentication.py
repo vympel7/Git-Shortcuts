@@ -3,7 +3,7 @@ import json, os
 
 
 def login():
-    if os.path.exists(os.path.dirname(__file__) + "\\Data\\AuthenticationData\\LoginDefaultSettings.json"):
+    if os.path.exists(os.path.dirname(os.path.dirname(__file__)) + "\\Data\\AuthenticationData\\LoginDefaultSettings.json"):
         def_set_choice = input("\nDo you want to use the default login settings (y/n)?\n").lower().strip()
         if def_set_choice == "y":
             login_choice, org_or_user, token, username, password, hostname = load_data().values()
@@ -93,29 +93,29 @@ def save_data(save_list):
             os.mkdir("Data");os.chdir("Data")
             try:
                 os.mkdir("AuthenticationData")
-                os.chdir(os.path.dirname(__file__))
+                os.chdir(os.path.dirname(os.path.dirname(__file__)))
                 with open("Data\\AuthenticationData\\LoginDefaultSettings.json", "w") as f:
                     json.dump(data, f)
             except:
-                os.chdir(os.path.dirname(__file__))
+                os.chdir(os.path.dirname(os.path.dirname(__file__)))
                 with open("Data\\AuthenticationData\\LoginDefaultSettings.json", "w") as f:
                     json.dump(data, f)
         except:
             os.chdir("Data")
             try:
                 os.mkdir("AuthenticationData")
-                os.chdir(os.path.dirname(__file__))
+                os.chdir(os.path.dirname(os.path.dirname(__file__)))
                 with open("Data\\AuthenticationData\\LoginDefaultSettings.json", "w") as f:
                     json.dump(data, f)
             except:
-                os.chdir(os.path.dirname(__file__))
+                os.chdir(os.path.dirname(os.path.dirname(__file__)))
                 with open("Data\\AuthenticationData\\LoginDefaultSettings.json", "w") as f:
                     json.dump(data, f)
 
 
 
 def load_data():
-    if os.path.exists(os.path.dirname(__file__) + "\\Data\\AuthenticationData\\LoginDefaultSettings.json"):
+    if os.path.exists(os.path.dirname(os.path.dirname(__file__))) + "\\Data\\AuthenticationData\\LoginDefaultSettings.json"):
         with open("Data\\AuthenticationData\\LoginDefaultSettings.json") as f:
             return json.load(f)
     return 0

@@ -12,10 +12,10 @@ def list_repos(user):
 def create_repo(user, name):
     if name != []:
         name = name[0]
-    if os.path.exists(os.path.dirname(__file__) + "\\Data\\RepoData\\CreateRepoDefaultSettings.json"):
+    if os.path.exists(os.path.dirname(os.path.dirname(__file__)) + "\\Data\\RepoData\\CreateRepoDefaultSettings.json"):
         use_def = input("Use default settings (y/n)?\n").lower().strip()
         if use_def == "y":
-            with open("Data\\RepoData\\CreateRepoDefaultSettings.json") as f:
+            with open(os.path.dirname(os.path.dirname(__file__)) + "\\Data\\RepoData\\CreateRepoDefaultSettings.json") as f:
                 home_page, priv, auoti = json.load(f).values()
             if name == []:
                 name = input("Enter the new repository name: ")
@@ -32,7 +32,7 @@ def create_repo(user, name):
         priv = input("Set repository to private (y/n)?\n").lower().strip()
         autoi = input("Automatically initialize the repository (y/n)?\n").lower().strip()
         
-        save_data([home_page, priv, autoi])
+        save_repo_data([home_page, priv, autoi])
         
         user.create_repo(name, description = description if description.strip() != "" else NotSet, homepage = home_page if home_page.strip() != "" else NotSet, private = True if priv == "y" else False, auto_init = True if autoi == "y" else False)
 
@@ -91,7 +91,7 @@ def fpush(user, args):
             fpush(user, args)
 
 
-def save_data(data_list):
+def save_repo_data(data_list):
     save_def = input("Save settings as default for the next repositories [Repository name and description won't be saved] (y/n)?\n").lower().strip()
     
     if save_def == "y":
@@ -105,21 +105,21 @@ def save_data(data_list):
             os.mkdir("Data");os.chdir("Data")
             try:
                 os.mkdir("RepoData")
-                os.chdir(os.path.dirname(__file__))
+                os.chdir(os.path.dirname(os.path.dirname(__file__)))
                 with open("Data\\RepoData\\CreateRepoDefaultSettings.json", "w") as f:
                     json.dump(data, f)
             except:
-                os.chdir(os.path.dirname(__file__))
+                os.chdir(os.path.dirname(os.path.dirname(__file__)))
                 with open("Data\\RepoData\\CreateRepoDefaultSettings.json", "w") as f:
                     json.dump(data, f)
         except:
             os.chdir("Data")
             try:
                 os.mkdir("RepoData")
-                os.chdir(os.path.dirname(__file__))
+                os.chdir(os.path.dirname(os.path.dirname(__file__)))
                 with open("Data\\RepoData\\CreateRepoDefaultSettings.json", "w") as f:
                     json.dump(data, f)
             except:
-                os.chdir(os.path.dirname(__file__))
+                os.chdir(os.path.dirname(os.path.dirname(__file__)))
                 with open("Data\\RepoData\\CreateRepoDefaultSettings.json", "w") as f:
                     json.dump(data, f)

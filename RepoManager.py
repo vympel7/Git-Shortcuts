@@ -9,8 +9,8 @@ def list_repos(user):
         print("\n({}): {}".format(n, repo.name))
         n += 1
 
-def create_repo(user, name=None):
-    if name != None:
+def create_repo(user, name):
+    if name != []:
         name = name[0]
     if os.path.exists(os.path.dirname(__file__) + "\\Data\\RepoData\\CreateRepoDefaultSettings.json"):
         use_def = input("Use default settings (y/n)?\n").lower().strip()
@@ -25,7 +25,7 @@ def create_repo(user, name=None):
     else:
         print("\nPress enter to leave the parameter blank\n")
         
-        if name == None:
+        if name == []:
             name = input("Enter the new repository name: ")
         description = input("Enter the new repository description: ")
         home_page = input("Enter the new repository homepage: ")
@@ -35,6 +35,60 @@ def create_repo(user, name=None):
         save_data([home_page, priv, autoi])
         
         user.create_repo(name, description = description if description.strip() != "" else NotSet, homepage = home_page if home_page.strip() != "" else NotSet, private = True if priv == "y" else False, auto_init = True if autoi == "y" else False)
+
+
+def fpush(user, args):
+    repos = user.get_repos()
+    if len(args) == 0:
+        print("Push to which repository?")
+        list_repos(user)
+        repo_name = input("\n").strip()
+        try:
+            repo = user.get_repo(repo_name)
+            file_path = input(f"Insert file path to push to repository {repo_name}: ").strip()
+            if os.path.exists(file_path):
+                commit_message = input("Insert a commit message: ").strip()
+                branch = input("Push to which branch? (leave blank for master): ").strip()
+                with open(file_path) as f:
+                    repo.create_file(file_path, commit_message, f.read().encode("utf-8"), branch = "master" if branch == "" else branch)
+            else:
+                print(f"File {file_path} was not found")
+                fpush(user, args)
+        except:
+            print(f"Repository {repo_name} was not found")
+            fpush(user, args)
+    
+    elif len(args) == 1:
+        if ((repo_name := args[0]) in repos):
+            repo = user.get_repo(repo_name)
+            file_path = input(f"Insert file path to push to repository {repo_name}: ").strip()
+            if os.path.exists(file_path):
+                commit_message = input("Insert a commit message: ").strip()
+                branch = input("Push to which branch? (leave blank for master): ").strip()
+                with open(file_path) as f:
+                    repo.create_file(file_path, commit_message, f.read().encode("utf-8"), branch = "master" if branch == "" else branch)
+            else:
+                print(f"File {file_path} was not found")
+                fpush(user, args)
+        else:
+            print(f"Repository {repo_name} was not found")
+            fpush(user, args)
+    
+    else:
+        if ((repo_name := args[0]) in repos):
+            repo = user.get_repo(repo_name)
+            file_path = args[1]
+            if os.path.exists(file_path):
+                commit_message = input("Insert a commit message: ").strip()
+                branch = input("Push to which branch? (leave blank for master): ").strip()
+                with open(file_path) as f:
+                    repo.create_file(file_path, commit_message, f.read().encode("utf-8"), branch = "master" if branch == "" else branch)
+            else:
+                print(f"File {file_path} was not found")
+                fpush(user, args)
+        else:
+            print(f"Repository {repo_name} was not found")
+            fpush(user, args)
 
 
 def save_data(data_list):

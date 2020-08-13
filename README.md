@@ -5,9 +5,9 @@ Open Main.py in a terminal and you're set!
 ### Commands
 - [x] commands
 - [x] repos
-- [x] create (name)
+- [x] create (repo name)
+- [x] fpush (repo name) (file path)
 - [ ] edit_repo
-- [ ] full_push
 
 ### Use examples
 Text in **bold** is printed by the computer
@@ -20,6 +20,7 @@ Text in *italic* is user input
 **(0): commands**  
 **(1): repos**  
 **(2): create**
+**(3): fpush**
 
 #### Example 2
 **Enter a command:**  

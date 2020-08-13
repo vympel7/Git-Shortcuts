@@ -18,5 +18,8 @@ class CommandsClass:
         print("----- REPOSITORIES -----")
         repom.list_repos(user)
     
-    def create(name=None):
+    def create(name):
         repom.create_repo(user, name)
+
+    def fpush(args):
+        repom.fpush(user, args)

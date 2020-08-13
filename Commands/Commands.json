@@ -2,6 +2,7 @@
     "commands": [
         "commands",
         "repos",
-        "create"
+        "create",
+        "fpush"
     ]
 }

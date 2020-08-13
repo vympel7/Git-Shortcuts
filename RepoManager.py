@@ -17,7 +17,7 @@ def create_repo(user, name):
         if use_def == "y":
             with open("Data\\RepoData\\CreateRepoDefaultSettings.json") as f:
                 home_page, priv, auoti = json.load(f).values()
-            if name == None:
+            if name == []:
                 name = input("Enter the new repository name: ")
             description = input("Enter the new repository description: ")
             user.create_repo(name, description = description if description.strip() != "" else NotSet, homepage = home_page if home_page.strip() != "" else NotSet, private = True if priv == "y" else False, auto_init = True if autoi == "y" else False)

@@ -10,7 +10,7 @@ Open Main.py in a terminal and you're set!
 - [ ] edit_repo
 
 ### Use examples
-Text in **bold** is printed by the computer
+Text in **bold** is printed by the computer  
 Text in *italic* is user input
 
 #### Example 1

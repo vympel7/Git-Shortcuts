@@ -2,6 +2,16 @@
 It is as easy as running a file (*because that's actually all you have to do*)  
 Open Main.py in a terminal and you're set!
 
+### Requires
+Required | Version
+---------|---------
+python | >= 3.5
+requests | >= 2.14.0
+deprecated | any
+pyjwt | any
+
+You also need PyGithub, which you can find at https://github.com/PyGithub/PyGithub
+
 ### Commands
 - [x] commands
 - [x] repos

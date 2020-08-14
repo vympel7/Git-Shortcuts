@@ -115,7 +115,7 @@ def save_data(save_list):
 
 
 def load_data():
-    if os.path.exists(os.path.dirname(os.path.dirname(__file__))) + "\\Data\\AuthenticationData\\LoginDefaultSettings.json":
+    if os.path.exists((os.path.dirname(os.path.dirname(__file__))) + "\\Data\\AuthenticationData\\LoginDefaultSettings.json"):
         with open("Data\\AuthenticationData\\LoginDefaultSettings.json") as f:
             return json.load(f)
     return 0

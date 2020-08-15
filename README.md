@@ -1,6 +1,6 @@
 ## Use instructions
 It is as easy as running a file (*because that's actually all you have to do*)  
-Open Main.py in a terminal and you're set!
+Execute Main.py in a terminal and you're set!
 
 ### Requires
 Required | Version

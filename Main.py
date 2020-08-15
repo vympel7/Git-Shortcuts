@@ -8,12 +8,12 @@ with open("Commands\\Commands.json") as f:
 
 while 1:
     print("\nEnter a command: \n")
-    
+
     command = input().lower().strip().split(" ")
 
 
     if command[0] == "q":
         break
-    
+
     if command[0] in commands:
         getattr(cc, command[0])(command[1:])

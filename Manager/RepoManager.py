@@ -21,19 +21,19 @@ def create_repo(user, name):
                 name = input("Enter the new repository name: ")
             description = input("Enter the new repository description: ")
             user.create_repo(name, description = description if description.strip() != "" else NotSet, homepage = home_page if home_page.strip() != "" else NotSet, private = True if priv == "y" else False, auto_init = True if autoi == "y" else False)
-        
+
     else:
         print("\nPress enter to leave the parameter blank\n")
-        
+
         if name == []:
             name = input("Enter the new repository name: ")
         description = input("Enter the new repository description: ")
         home_page = input("Enter the new repository homepage: ")
         priv = input("Set repository to private (y/n)?\n").lower().strip()
         autoi = input("Automatically initialize the repository (y/n)?\n").lower().strip()
-        
+
         save_repo_data([home_page, priv, autoi])
-        
+
         user.create_repo(name, description = description if description.strip() != "" else NotSet, homepage = home_page if home_page.strip() != "" else NotSet, private = True if priv == "y" else False, auto_init = True if autoi == "y" else False)
 
 
@@ -57,7 +57,7 @@ def fpush(user, args):
         except:
             print(f"Repository {repo_name} was not found")
             fpush(user, args)
-    
+
     elif len(args) == 1:
         if ((repo_name := args[0]) in repos):
             repo = user.get_repo(repo_name)
@@ -73,7 +73,7 @@ def fpush(user, args):
         else:
             print(f"Repository {repo_name} was not found")
             fpush(user, args)
-    
+
     else:
         if ((repo_name := args[0]) in repos):
             repo = user.get_repo(repo_name)
@@ -100,7 +100,7 @@ def save_repo_data(data_list):
                     "priv": data_list[1],
                     "autoi": data_list[2]
                 }
-        
+
         try:
             os.mkdir("Data");os.chdir("Data")
             try:

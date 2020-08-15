@@ -23,7 +23,7 @@ def login():
     to_save.insert(1, org_or_user)
 
     return login_options(login_choice, org_or_user, to_save)
-    
+
 
 
 
@@ -36,7 +36,7 @@ def login_options(login_option, org_or_user_option, save_list = None, options = 
             return Github(username, password = password).get_user() if org_or_user_option else Github(username, password = password).get_organization()
         else:
             return Github(base_url = f"https://{hostname}/api/v3", login_or_token = token).get_user() if org_or_user_option else Github(base_url = f"https://{hostname}/api/v3", login_or_token = token).get_organization()
-    
+
     if not login_option:
         token = input("\nEnter your github token: ").strip()
         save_list.append(token)
@@ -84,7 +84,7 @@ def save_data(save_list):
                "password": "",
                "hostname": ""
            }
-    
+
     if save_def == "y":
         for i in range(len(data.values())):
             data[list(data.keys())[i]] = save_list[i]

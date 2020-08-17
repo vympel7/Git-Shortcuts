@@ -17,7 +17,8 @@ You also need PyGithub, which you can find at https://github.com/PyGithub/PyGith
 - [x] repos
 - [x] create (repo name)
 - [x] fpush (repo name) (file path)
-- [ ] edit_repo
+- [x] edit (repo name)
+- others to come
 
 ### Use examples
 Text in **bold** is printed by the computer  
@@ -30,7 +31,8 @@ Text in *italic* is user input
 **(0): commands**  
 **(1): repos**  
 **(2): create**  
-**(3): fpush**
+**(3): fpush**  
+**(4): edit**
 
 #### Example 2
 **Enter a command:**  
@@ -57,19 +59,11 @@ Text in *italic* is user input
 
 #### Example 4
 **Enter a command:**
-*create*
+*fpush projectBeta*
 
-**Press enter to leave the parameter blank**  
-**Enter the new repository name:** *projectAlphaAPI*  
-**Enter the new repository description:** *projectAlpha API*  
-**Enter the new repository homepage:**    
-**Set repository to private (y/n)?**  
-*y*  
-**Automatically initialize the repository (y/n)?**  
-*y*  
-
-**Save settings as default for the next repositories [Repository name and description won't be saved] (y/n)?**  
-*n*
+**Insert file path to push to repository projectBeta:** *Parser.go*  
+**Insert a commit message:** *parser for the project*  
+**Push to which branch? (leave blank for master):**   
 
 ### Useful features
 Save login data to automatically login to github.  

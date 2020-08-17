@@ -1,0 +1,9 @@
+{
+    "attributes": [
+        "name",
+        "description",
+        "visibility",
+        "topics",
+        "website"
+    ]
+}

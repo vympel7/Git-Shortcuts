@@ -23,3 +23,6 @@ class CommandsClass:
 
     def fpush(args):
         repom.fpush(user, args)
+
+    def edit(args):
+        repom.edit(user, args)

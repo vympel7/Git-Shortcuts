@@ -1,3 +1,5 @@
+import sys, os
+sys.path.append(os.path.dirname(os.path.dirname(__file__)) + "\\Lib\\site-packages")
 from Commands.CommandsClass import CommandsClass as cc
 import json
 
@@ -9,11 +11,11 @@ with open("Commands\\Commands.json") as f:
 while 1:
     print("\nEnter a command: \n")
 
-    command = input().lower().strip().split(" ")
+    command = input().strip().split(" ")
 
 
-    if command[0] == "q":
+    if command[0].lower() == "q":
         break
 
-    if command[0] in commands:
-        getattr(cc, command[0])(command[1:])
+    if command[0].lower() in commands:
+        getattr(cc, command[0].lower())(command[1:])

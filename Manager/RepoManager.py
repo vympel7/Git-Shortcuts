@@ -59,8 +59,8 @@ def fpush(user, args):
             fpush(user, args)
 
     elif len(args) == 1:
-        if ((repo_name := args[0]) in repos):
-            repo = user.get_repo(repo_name)
+        try:
+            repo = user.get_repo(args[0])
             file_path = input(f"Insert file path to push to repository {repo_name}: ").strip()
             if os.path.exists(file_path):
                 commit_message = input("Insert a commit message: ").strip()
@@ -70,13 +70,12 @@ def fpush(user, args):
             else:
                 print(f"File {file_path} was not found")
                 fpush(user, args)
-        else:
+        except:
             print(f"Repository {repo_name} was not found")
-            fpush(user, args)
 
     else:
-        if ((repo_name := args[0]) in repos):
-            repo = user.get_repo(repo_name)
+        try:
+            repo = user.get_repo(args[0])
             file_path = args[1]
             if os.path.exists(file_path):
                 commit_message = input("Insert a commit message: ").strip()
@@ -85,10 +84,53 @@ def fpush(user, args):
                     repo.create_file(file_path, commit_message, f.read().encode("utf-8"), branch = "master" if branch == "" else branch)
             else:
                 print(f"File {file_path} was not found")
-                fpush(user, args)
-        else:
+        except:
             print(f"Repository {repo_name} was not found")
-            fpush(user, args)
+
+
+def edit(user, args):
+    os.chdir(os.path.dirname(__file__))
+    repos = user.get_repos()
+    if len(args) == 0:
+        print("\nWhat repository do you want to edit?")
+        list_repos(user)
+        repo_name = input("\n").strip()
+        try:
+            repo = user.get_repo(repo_name)
+            print(f"\nEditing {repo_name}\n")
+            print("What do you want to edit?\n")
+            with open("Editables.json") as f:
+                n = 0
+                attrs = json.load(f)["attributes"]
+                for attr in attrs:
+                    print("({}): {}".format(n, attr))
+                    n += 1
+                while (attribute := input("\n").lower().strip()) not in attrs:
+                    print("\nInsert a valid attribute\n")
+            from .Edit import EditAttributes as editattr
+            getattr(editattr, attribute)(repo)
+        except:
+            print(f"Repository {repo_name} was not found")
+            edit(user, args)
+
+    else:
+        try:
+            repo_name = args[0]
+            repo = user.get_repo(repo_name)
+            print(f"Editing {repo_name}\n")
+            print("What do you want to edit?\n")
+            with open("Editables.json") as f:
+                n = 0
+                attrs = json.load(f)["attributes"]
+                for attr in attrs:
+                    print("({}): {}".format(n, attr))
+                    n += 1
+                while (attribute := input("\n").lower().strip()) not in attrs:
+                    print("\nInsert a valid attribute\n")
+            from .Edit import EditAttributes as editattr
+            getattr(editattr, attribute)(repo)
+        except:
+            print(f"Repository {repo_name} was not found")
 
 
 def save_repo_data(data_list):
@@ -101,6 +143,7 @@ def save_repo_data(data_list):
                     "autoi": data_list[2]
                 }
 
+        os.chdir(os.path.dirname(os.path.dirname(__file__)))
         try:
             os.mkdir("Data");os.chdir("Data")
             try:

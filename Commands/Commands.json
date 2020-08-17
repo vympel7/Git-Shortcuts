@@ -3,6 +3,7 @@
         "commands",
         "repos",
         "create",
-        "fpush"
+        "fpush",
+        "edit"
     ]
 }

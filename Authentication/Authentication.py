@@ -6,17 +6,16 @@ def login():
     if os.path.exists(os.path.dirname(os.path.dirname(__file__)) + "\\Data\\AuthenticationData\\LoginDefaultSettings.json"):
         def_set_choice = input("\nDo you want to use the default login settings (y/n)?\n").lower().strip()
         if def_set_choice == "y":
-            login_choice, org_or_user, token, username, password, hostname = load_data().values()
-            return login_options(login_choice, org_or_user, options = [token, username, password, hostname])
+            login_choice, org_or_user, token, username, password = load_data().values()
+            return login_options(login_choice, org_or_user, options = [token, username, password])
 
 
     print("\nChoose how to login to your github account")
     print("(0) Token")
     print("(1) Username and password")
-    print("(2) Github Enterprise with custom hostname")
     
     to_save = list(range(6))
-    login_choice = get_choice(": ", [0, 1, 2])
+    login_choice = get_choice(": ", [0, 1])
     to_save.insert(0, login_choice)
 
     org_or_user = get_choice("\nYou're an organization (0) or an user (1)?\n", [0, 1])
@@ -26,34 +25,26 @@ def login():
 
 
 
-
 def login_options(login_option, org_or_user_option, save_list = None, options = None):
     if options != None:
-        token, username, password, hostname = options
+        token, username, password = options
         if not login_option:
             return Github(login_or_token = token).get_user() if org_or_user_option else Github(login_or_token = token).get_organization()
-        elif login_option == 1:
-            return Github(username, password = password).get_user() if org_or_user_option else Github(username, password = password).get_organization()
         else:
-            return Github(base_url = f"https://{hostname}/api/v3", login_or_token = token).get_user() if org_or_user_option else Github(base_url = f"https://{hostname}/api/v3", login_or_token = token).get_organization()
+            return Github(username, password = password).get_user() if org_or_user_option else Github(username, password = password).get_organization()
 
     if not login_option:
         token = input("\nEnter your github token: ").strip()
         save_list.append(token)
         save_data(save_list)
         return Github(login_or_token = token).get_user() if org_or_user_option else Github(login_or_token = token).get_organization()
-    elif login_option == 1:
+    else:
         username = input("\nEnter your github username: ").strip()
         save_list.insert(3, username)
         password = input("\nEnter your github password: ").strip()
         save_list.insert(4, password)
         save_data(save_list)
         return Github(username, password = password).get_user() if org_or_user_option else Github(username, password = password).get_organization()
-    else:
-        hostname = input("\nEnter your company hostname: ").strip()
-        save_list.insert(5, hostname)
-        save_data(save_list)
-        return Github(base_url = f"https://{hostname}/api/v3", login_or_token = token).get_user() if org_or_user_option else Github(base_url = f"https://{hostname}/api/v3", login_or_token = token).get_organization()
 
 
 def get_choice(lastmessage, num_range):
@@ -82,7 +73,6 @@ def save_data(save_list):
                "token": "",
                "username": "",
                "password": "",
-               "hostname": ""
            }
 
     if save_def == "y":
@@ -118,4 +108,3 @@ def load_data():
     if os.path.exists(os.path.dirname(os.path.dirname(__file__)) + "\\Data\\AuthenticationData\\LoginDefaultSettings.json"):
         with open("Data\\AuthenticationData\\LoginDefaultSettings.json") as f:
             return json.load(f)
-    return 0

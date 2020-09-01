@@ -1,8 +1,7 @@
-import sys, os
-sys.path.append(os.path.dirname(os.path.dirname(__file__)) + "\\Lib\\site-packages")
 from Commands.CommandsClass import CommandsClass as cc
 import json
 
+print("\nWELCOME TO GIT-SHORTCUTS\n")
 print("\nPress q to exit!")
 
 with open("Commands\\Commands.json") as f:

@@ -5,9 +5,12 @@ import json, os
 def list_repos(user):
     n = 0
     repos = user.get_repos()
+    repos_l = []
     for repo in repos:
         print("\n({}): {}".format(n, repo.name))
+        repos_l.append(repo.name)
         n += 1
+    return repos_l
 
 def create_repo(user, name):
     if name != []:
@@ -41,9 +44,10 @@ def fpush(user, args):
     repos = user.get_repos()
     if len(args) == 0:
         print("Push to which repository?")
-        list_repos(user)
-        repo_name = input("\n").strip()
+        repos_l = list_repos(user)
+        repo_c = input("\n").strip()
         try:
+            repo_name = repos_l[repo_c] if len(repo) == 1 and repo.isdigit() else repo_c
             repo = user.get_repo(repo_name)
             file_path = input(f"Insert file path to push to repository {repo_name}: ").strip()
             if os.path.exists(file_path):
@@ -93,9 +97,10 @@ def edit(user, args):
     repos = user.get_repos()
     if len(args) == 0:
         print("\nWhat repository do you want to edit?")
-        list_repos(user)
-        repo_name = input("\n").strip()
+        repos_l = list_repos(user)
+        repo_c = input("\n").strip()
         try:
+            repo_name = repos_l[repo_c] if len(repo) == 1 and repo.isdigit() else repo_c
             repo = user.get_repo(repo_name)
             print(f"\nEditing {repo_name}\n")
             print("What do you want to edit?\n")
@@ -105,10 +110,10 @@ def edit(user, args):
                 for attr in attrs:
                     print("({}): {}".format(n, attr))
                     n += 1
-                while (attribute := input("\n").lower().strip()) not in attrs:
+                while (attribute := input("\n").lower().strip()) not in attrs or (len(attribute) == 0 and attribute.isdigit() and int(attribute) < len(attrs)):
                     print("\nInsert a valid attribute\n")
             from .Edit import EditAttributes as editattr
-            getattr(editattr, attribute)(repo)
+            getattr(editattr, attrs[attribute] if attribute.isdigit() and len(attribute) == 0 else attribute)(repo)
         except:
             print(f"Repository {repo_name} was not found")
             edit(user, args)
